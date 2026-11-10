@@ -121,6 +121,15 @@ jobs:
             target_is_ancestor_of_head=true
           fi
 
+          # Snapshot updates record their upstream base without adding it as a
+          # Git parent. Honor that base when switching to customized mode.
+          if [ "${PRESERVE_FORK_CHANGES}" = "true" ] && [ "${target_is_ancestor_of_head}" = "false" ]; then
+            recorded_upstream="$(git log -1 --grep='^EdgeEver-Upstream-Commit: ' --format=%B HEAD | sed -n 's/^EdgeEver-Upstream-Commit: //p' | head -n 1)"
+            if [ -n "${recorded_upstream}" ] && git merge-base --is-ancestor "${target_commit}" "${recorded_upstream}" 2>/dev/null; then
+              target_is_ancestor_of_head=true
+            fi
+          fi
+
           planner_path="${RUNNER_TEMP}/upstream-sync-plan.mjs"
           if git cat-file -e "${target_commit}:scripts/upstream-sync-plan.mjs" 2>/dev/null; then
             git show "${target_commit}:scripts/upstream-sync-plan.mjs" > "${planner_path}"

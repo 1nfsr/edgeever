@@ -605,6 +605,58 @@ describe("Cloudflare deployment entrypoints", () => {
     });
   });
 
+  test("customized forks recognize a recorded snapshot base and still merge newer upstream changes", () => {
+    const cwd = mkdtempSync(resolve(tmpdir(), "edgeever-snapshot-customized-"));
+    try {
+      initializeSyncFixture(cwd);
+      writeFixtureFile(cwd, "app.txt", "base\n");
+      writeFixtureFile(cwd, "icon.svg", "cat\n");
+      runFixtureGit(cwd, "add", ".");
+      runFixtureGit(cwd, "commit", "-m", "base");
+      runFixtureGit(cwd, "checkout", "-b", "upstream");
+      writeFixtureFile(cwd, "app.txt", "release one\n");
+      runFixtureGit(cwd, "commit", "-am", "release one");
+      const target = spawnSync("git", ["rev-parse", "HEAD"], { cwd, encoding: "utf8" }).stdout.trim();
+      runFixtureGit(cwd, "checkout", "main");
+      prepareFixtureUpstreamSync(cwd, "snapshot", target);
+      runFixtureGit(cwd, "commit", "-m", `snapshot\n\nEdgeEver-Upstream-Commit: ${target}`);
+      writeFixtureFile(cwd, "icon.svg", "whale\n");
+      runFixtureGit(cwd, "commit", "-am", "custom icon");
+
+      const workflow = readRepositoryFile(".github/workflows/sync-edgeever-upstream.yml");
+      const start = workflow.indexOf("          target_is_ancestor_of_head=false");
+      const end = workflow.indexOf("          planner_path=", start);
+      const ancestryCheck = workflow.slice(start, end);
+      const check = (targetCommit: string, preserve: string) => {
+        const result = spawnSync("bash", ["-euc", `${ancestryCheck}\nprintf '%s' "$target_is_ancestor_of_head"`], {
+          cwd, encoding: "utf8",
+          env: { ...process.env, target_commit: targetCommit, PRESERVE_FORK_CHANGES: preserve },
+        });
+        expect(result.status).toBe(0);
+        return result.stdout;
+      };
+      expect(fixtureGitStatus(cwd, "merge-base", "--is-ancestor", target, "HEAD")).toBe(1);
+      expect(check(target, "true")).toBe("true");
+      expect(check(target, "false")).toBe("false");
+      expect(decideUpstreamSync({
+        contentMatchesTarget: false, forceRedeploy: true, headEqualsTarget: false,
+        headIsAncestorOfTarget: false, preserveForkChanges: true,
+        targetIsAncestorOfHead: check(target, "true") === "true",
+      }).reason).toBe("customized_contains_target");
+
+      runFixtureGit(cwd, "checkout", "upstream");
+      writeFixtureFile(cwd, "app.txt", "release two\n");
+      runFixtureGit(cwd, "commit", "-am", "release two");
+      runFixtureGit(cwd, "checkout", "main");
+      expect(check("upstream", "true")).toBe("false");
+      prepareFixtureUpstreamSync(cwd, "merge", "upstream");
+      expect(readFileSync(resolve(cwd, "app.txt"), "utf8")).toBe("release two\n");
+      expect(readFileSync(resolve(cwd, "icon.svg"), "utf8")).toBe("whale\n");
+    } finally {
+      rmSync(cwd, { recursive: true, force: true });
+    }
+  }, 20_000);
+
   test("prepares a linear product snapshot without changing downstream workflows", () => {
     const workingDirectory = mkdtempSync(resolve(tmpdir(), "edgeever-upstream-snapshot-"));
 
