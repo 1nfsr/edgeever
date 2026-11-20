@@ -109,7 +109,7 @@
     },
     "apps/desktop": {
       "name": "@edgeever/desktop",
-      "version": "2.30.0",
+      "version": "2.31.0",
       "dependencies": {
         "@agentclientprotocol/sdk": "^1.5.1",
         "@edgeever/image-host": "workspace:*",
