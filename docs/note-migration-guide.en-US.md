@@ -14,17 +14,19 @@ Operate directly in EdgeEver Web or Desktop without CLI commands or MCP setup.
 
 Go to **Settings → Backup & Import → Import from Other Apps**, then click **Start Import**.
 
-![Import from other apps entrance](assets/best-practices/original-image/import-from-other-note/import-in-setting.png)
+![Import from other apps entrance](assets/best-practices/original-image/import-from-other-note/import-in-setting-v2.png)
 
 ### Step 2: Select Source and Load Files
 
 Select your source platform in the dialog, then drag and drop or browse files:
 
-![Import dialog and source selection](assets/best-practices/original-image/import-from-other-note/import-dialog.png)
+![Import dialog and source selection](assets/best-practices/original-image/import-from-other-note/import-dialog-v2.png)
 
 - **Evernote**:
   - Right-click a notebook in the desktop client and choose **Export Notebook...** to export as `.enex` (ensure tags and timestamps are checked).
   - Supports single/multiple `.enex` files, folders containing ENEX files, or bundled `.zip` archives.
+  - Titles longer than 160 characters are shortened automatically, with the full original title preserved in the note body, without blocking import.
+  - Missing, empty or oversized attachments block import by default. Enable **Skip unavailable attachments and continue** to rescan and import the remaining content. Skipped attachments retain their names or reference IDs in the notes, and warnings remain visible after import. Attachment counts include only resources to upload; original export files stay unchanged.
 - **Obsidian**:
   - Drag and drop your local Vault folder directly, or compress the Vault into a `.zip`.
   - Automatically parses Front Matter, tags, and Wiki-link images (`![[image.png]]`), while ignoring `.obsidian` and `.git`.

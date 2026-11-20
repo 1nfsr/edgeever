@@ -3,7 +3,7 @@
     <img src="assets/brand/edgeever-icon.svg" alt="EdgeEver logo" width="48" align="absmiddle" /> EdgeEver
   </h1>
   <p>
-    <b>AI-native knowledge base & Evernote/Obsidian alternative. Instant all-platform sync, rich notes (tables, mind maps, diagrams, posters), web clipper & MCP. 100% free on Cloudflare or Docker.</b>
+    <b>AI-native note-taking app & Evernote/Obsidian alternative. Instant all-platform sync, rich notes (tables, mind maps, diagrams, posters), web clipper & MCP. 100% free on Cloudflare or Docker.</b>
   </p>
   <p>
     <a href="https://github.com/tianma-if/edgeever/stargazers"><img src="https://img.shields.io/github/stars/tianma-if/edgeever?style=social" alt="GitHub Stars" /></a>
@@ -42,10 +42,10 @@ EdgeEver is a modern, open-source notes and knowledge base workspace. It preserv
 Many users of **note-taking apps and personal knowledge bases** simply want a **reliable, open, and fast** personal knowledge base. However, existing mainstream solutions all present tradeoffs:
 
 * **Evernote**: Offers the smoothest, most seamless multi-device cloud sync experience. Yet as it evolved into a full-featured commercial suite, ads and add-ons multiplied while system overhead climbed. Meanwhile, free-tier quotas tightened, premium AI subscriptions grew expensive, and it remains difficult to integrate into modern self-hosted and private AI workflows.
-* **Obsidian**: Open files, closed-source core. Official Sync is paid and third-party sync is tedious; relying entirely on flat local file scanning causes noticeable cold-start and search lag once notes reach thousands or heavy plugins are loaded; storing images and attachments alongside notes quickly bloats vaults, making mobile sync sluggish and leaving orphaned files behind; and it is overly heavy for lightweight, capture-anywhere use.
+* **Obsidian**: Open Markdown files, closed-source core. Official Sync requires an ongoing subscription tiered by storage and vault count, while third-party sync (iCloud, WebDAV, Git, etc.) is tedious and conflict-prone; constrained by local-directory file sync and mobile background limits, it struggles to match the seamless, invisible sync of cloud-native note apps (and lacks a full web workspace). Relying on local file scanning causes noticeable cold-start and search lag once notes reach the thousands or plugins pile up; storing attachments alongside notes bloats vaults, slows mobile sync, and leaves orphaned files behind. Combined with an IDE-like UI and plugin-tinkering learning curve, it feels overly heavy for users used to out-of-the-box, capture-anywhere cloud note apps.
 * **Joplin**: A veteran open-source three-pane note app, yet its UI design and editing experience feel stuck more than a decade in the past, lacking modern polish and fluidity. Fast official sync (Joplin Cloud) requires a paid subscription; free sync via WebDAV or cloud drives relies on file-by-file polling that becomes sluggish on mobile as notes and attachments grow, while self-hosting Joplin Server requires maintaining your own server with no zero-cost serverless option. It also lacks a full browser-based web workspace and native AI Agent capabilities (MCP/ACP).
 * **Memos & Stream Notes**: Clean and simple, but their social-timeline layouts differ fundamentally from the structured productivity of a classic three-pane workflow.
-* **SiYuan & Block-based PKMs**: Powerful with self-hosting support, but their granular "block-level" architecture imposes noticeable cognitive overhead for quick daily capture and continuous prose writing. Furthermore, they lack a true zero-cost serverless deployment tier, and multi-device sync relies on paid official subscriptions or paying extra to unlock S3/WebDAV sync features with your own storage.
+* **SiYuan & Block-based PKMs**: Powerful with self-hosting support, but their UI and interaction feel closer to heavy Obsidian-style PKMs than the intuitive three-pane experience of traditional commercial cloud note apps, and their granular "block-level" architecture also imposes noticeable cognitive overhead for quick daily capture and continuous prose writing. Furthermore, they lack a true zero-cost serverless deployment tier, and multi-device sync relies on paid official subscriptions or paying extra to unlock S3/WebDAV sync features with your own storage.
 
 **EdgeEver fills this gap**: The entire stack is open source, delivering truly **seamless, low-latency, instant multi-device cloud sync** with full self-hosting freedom. It keeps the three-pane layout you know, stays silky-smooth and lightweight even with 10,000+ notes, and ships native AI agents with zero-cost deployment.
 
@@ -83,7 +83,7 @@ The public demo resets every day at 3:00 AM (China Standard Time) and restores s
 <a id="features"></a>
 ## Feature Matrix & Capabilities
 
-An all-in-one workspace connecting inspiration capture, deep creation, and knowledge compounding (👉 **[Explore 19 step-by-step showcases with screenshots](docs/best-practices.md)**):
+An all-in-one workspace connecting inspiration capture, deep creation, and knowledge compounding (👉 **[Explore 20 step-by-step showcases with screenshots](docs/best-practices.md)**):
 
 | Module | Core Features | Advanced Features |
 | :--- | :--- | :--- |
@@ -91,7 +91,7 @@ An all-in-one workspace connecting inspiration capture, deep creation, and knowl
 | **Organization & Search** | • Infinite-depth notebooks & folder tree navigation<br>• Tagging system, drag-and-drop sorting, batch note merging/moving<br>• Millisecond-level full-text search with historical filtering | • **Standalone Knowledge Base Publishing**: One-click publish entire notebooks as static documentation sites with tree navigation & password protection<br>• **One-Click Third-Party Migration**: Native GUI import for flomo, Evernote, Obsidian, and Joplin with full notes, hierarchies, and attachments<br>• Multi-user spaces & physical tenant data isolation |
 | **Capture & Media** | • Universal attachment uploads (PDF, Office, audio/video, archives)<br>• Browser extension precision clipping for web text & images<br>• Mobile system share sheet to save photos & articles | • **Deep Multi-Platform Structured Clipping**: Deeply adapted for Xiaohongshu, X (Twitter), Zhihu, Reddit, GitHub, YouTube, Bilibili, and 20+ sources<br>• **WeChat Chat History Archiving**: One-click full transcript import with timestamps, quotes, emojis, and media<br>• **Client-Side Image Compression**: Automatic 50%–90% silent size reduction; chunked streaming safely supports up to 1 GiB files<br>• **OSS Object Storage & Desktop Image Hosting**: S3-compatible object storage per instance; direct desktop uploads via PicGo / PicList and CloudFlare ImgBed |
 | **Data & Visuals** | • Native table editing & Markdown table rendering<br>• Native Mermaid diagrams (flowcharts, sequence diagrams, architecture) | • **AI Multi-Dimensional Tables**: Prompt-to-database with automatic field typing (tags, dates, selects)<br>• **Public Online Collection Forms**: One-click shareable forms without login, syncing responses into tables in real time<br>• **AI Diagram & Infographic Generation**: In-place creation of timelines, comparison charts, quadrant matrices & mind maps |
-| **AI & Ecosystem** | • Companion sidebar AI assistant for summaries, proofreading & translations<br>• BYOK (Bring Your Own Key): compatible with OpenAI, Claude, Gemini & custom endpoints | • **Native Agent Protocols (MCP & ACP)**: Built-in MCP for external agent read/write; ACP in desktop app to drive local agents such as Codex, Claude Code and CodeBuddy directly<br>• **AI Audio & Video Transcription**: Client-side audio extraction and chunking, connecting directly to OpenAI-compatible speech models to transcribe and insert text into notes<br>• **Open Plugin API & Theme Ecosystem**: One-click install from marketplace or GitHub with cross-device sync; supports reading/writing notes and editor interactions, custom panels and commands, AI invocation, desktop scheduled tasks, and codeless theme customization |
+| **AI & Ecosystem** | • Companion sidebar AI assistant for summaries, proofreading & translations<br>• BYOK (Bring Your Own Key): compatible with OpenAI, Claude, Gemini & custom endpoints | • **Native Agent Protocols (MCP & ACP)**: Built-in MCP for external agent read/write; ACP in desktop app to drive local agents such as Codex, Claude Code, Antigravity and WorkBuddy directly<br>• **AI Audio & Video Transcription**: Client-side audio extraction and chunking, connecting directly to OpenAI-compatible speech models to transcribe and insert text into notes<br>• **Open Plugin API & Theme Ecosystem**: One-click install from marketplace or GitHub with cross-device sync; supports reading/writing notes and editor interactions, custom panels and commands, AI invocation, desktop scheduled tasks, and codeless theme customization |
 | **Multi-Device Sync & Foundation** | • Seamless, low-latency sync across desktop, mobile, and web with zero device limits<br>• Official client support across Web, macOS, Windows, Linux, iOS, and Android<br>• Offline-first with auto-sync queue: write smoothly offline, automatically resume and sync when reconnected<br>• Standard SQLite database, lossless ZIP backup & Markdown export/import | • **Zero Server Cost for Life**: 100% runnable on Cloudflare Free tier (~150k short notes & ~50k images)<br>• **Flexible Docker Self-Hosting**: One-click deployment for VPS, NAS, or home server with millions of notes & instant sync<br>• **Desktop Auto-Backup**: Scheduled local backups with multi-snapshot retention, optional password encryption, and automatic WebDAV off-site copies<br>• Server-side brute-force protection, TOTP two-factor authentication (2FA), active device session management, and tenant isolation |
 
 ## Deployment
@@ -102,7 +102,7 @@ For Cloudflare, choose either of the following online deployment options:
 
 ### Option A: Deploy with an AI Agent (Recommended)
 
-Copy the prompt below directly into an AI Agent (such as Codex, Claude, Cursor, WorkBuddy, Antigravity, OpenClaw, Hermes Agent, etc.). During execution, if access to GitHub or Cloudflare is required, review the requested permissions and follow the prompts to authorize access.
+Copy the prompt below directly into an AI Agent (such as Codex, Claude Code, DeepSeek Harness, WorkBuddy, Antigravity, etc.). During execution, if access to GitHub or Cloudflare is required, review the requested permissions and follow the prompts to authorize access.
 
 ```text
 Deploy EdgeEver entirely through GitHub and Cloudflare:
@@ -180,7 +180,7 @@ Whether for routine data backups, seamless cross-instance migration, or switchin
 
 ### AI & MCP Protocol Integration
 
-Create an API token in **Profile** -> **API / MCP** and copy the Remote MCP configuration in one click to let AI Agents such as Claude Code, Cursor, Antigravity, and OpenClaw securely manage your knowledge base within account permissions. EdgeEver supports full CRUD for text notes, visual diagram notes (mind maps, flowcharts, and architecture diagrams), structured table notes, and native poster notes. Agents can also manage notebook hierarchies, tags, attachments, revision history, note templates, and AI instructions.
+Create an API token in **Profile** -> **API / MCP** and copy the Remote MCP configuration in one click to let AI Agents such as Claude Code, Codex, DeepSeek Harness, and Antigravity securely manage your knowledge base within account permissions. EdgeEver supports full CRUD for text notes, visual diagram notes (mind maps, flowcharts, and architecture diagrams), structured table notes, and native poster notes. Agents can also manage notebook hierarchies, tags, attachments, revision history, note templates, and AI instructions.
 
 For client setup, token access levels, troubleshooting and suggested rules for agents, see [Using EdgeEver with MCP clients](docs/mcp-guide.md).
 
@@ -197,7 +197,7 @@ The instance administrator can create, disable, or reset member accounts in **Pr
 
 - **OSS Object Storage**: The instance owner can configure S3-compatible object storage under **Settings → Advanced → OSS object storage**. Changing storage does not migrate or affect existing attachments.
 - **Desktop PicGo integration**: The desktop app can hand inserted images to a PicGo or PicList server on this computer or on another machine you trust, such as a NAS. That server uploads them to GitHub, SM.MS, Upyun, Qiniu, or a custom image host. The address only needs to end with `/upload`, so a PicList behind a reverse proxy works too.
-- **Desktop CloudFlare ImgBed**: The desktop app can also upload inserted images straight to your self-hosted [CloudFlare ImgBed](https://github.com/MarSeventh/CloudFlare-ImgBed) with an API token. The upload folder accepts PicList-style placeholders such as `{Y}/{m}/{d}` and `{memoId}`.
+- **CloudFlare ImgBed on desktop and web**: Upload inserted images directly to your self-hosted [CloudFlare ImgBed](https://github.com/MarSeventh/CloudFlare-ImgBed) using an API token. Folder templates support `{Y}/{m}/{d}` and `{memoId}`. Web access requires HTTPS and CORS allowing your EdgeEver origin and the `Authorization` header. Credentials stay in the current browser or desktop app; images are excluded from EdgeEver backups.
 
 ### Plugins and Themes
 
@@ -222,7 +222,7 @@ Local development signs in automatically; fresh databases use `owner` / `edgeeve
 
 - Bun workspace monorepo with Web, API, official site, and shared type package.
 - Frontend: Vite, React, React Router, TanStack Query, Tailwind CSS, shadcn/ui, and Radix UI.
-- Editor: TipTap / ProseMirror with Markdown support; PWA uses vite-plugin-pwa, Workbox, and Dexie.
+- Editor: TipTap / ProseMirror with Markdown support.
 - Android app: Expo + React Native in `apps/mobile`, with SQLite local storage and incremental sync.
 - iOS app: Native SwiftUI in `apps/ios` (iOS 17+), with a packaged TipTap EditorBundle, GRDB local mirror/outbox, and Android-aligned shell chrome.
 - Native desktop app: Electron + Rust sidecar combines a consistent cross-platform experience with high-performance local data services; SQLite enables offline editing, incremental sync when back online, and local backups.
@@ -236,7 +236,7 @@ Local development signs in automatically; fresh databases use `owner` / `edgeeve
 <summary>📁 Expand to view: Monorepo Project Structure</summary>
 
 ```text
-apps/web          Vite + React frontend, PWA, offline drafts, and sync queue
+apps/web          Vite + React frontend, offline drafts, and sync queue
 apps/extension    Chrome/Edge/Firefox Manifest V3 web clipper
 apps/api          Cloudflare Worker + Hono API, MCP endpoint
 apps/mobile       Expo + React Native Android app
@@ -269,7 +269,7 @@ content_text      Full-text search, summary generation, and indexing
 ### Core Mechanisms & Design Decisions
 
 - **Client-Side Silent Compression**: To avoid consuming compute quota on serverless runtimes like Cloudflare Workers, image compression occurs in the Web client before upload (converting PNG/JPEG/WebP/AVIF to WebP when beneficial, max edge 2560px; original retained if compression does not reduce size). REST API and MCP endpoints store client-supplied binaries directly without additional server-side transcoding.
-- **Offline-First & Sync Timing**: Web, PWA, and desktop clients automatically upload memo edits after 30 seconds of typing inactivity, and poll for remote changes every 5 minutes while visible; window refocus and manual refresh remain immediate. Configurable via `DEFERRED_MEMO_SYNC_DELAY_MS` and `BACKGROUND_WORKSPACE_REFRESH_INTERVAL_MS` in [`apps/web/src/lib/workspace-refresh.ts`](apps/web/src/lib/workspace-refresh.ts).
+- **Offline-First & Sync Timing**: Web and desktop clients automatically upload memo edits after 30 seconds of typing inactivity, and poll for remote changes every 5 minutes while visible; window refocus and manual refresh remain immediate. Configurable via `DEFERRED_MEMO_SYNC_DELAY_MS` and `BACKGROUND_WORKSPACE_REFRESH_INTERVAL_MS` in [`apps/web/src/lib/workspace-refresh.ts`](apps/web/src/lib/workspace-refresh.ts).
 
 ### Contributing Code
 
@@ -335,12 +335,14 @@ EdgeEver is self-hosted software. Except for official demo instances, project ma
   <a href="https://github.com/Crowszzz"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/75199133?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@Crowszzz" /></a>
   <a href="https://github.com/CottonChou"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/17818375?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@CottonChou" /></a>
   <a href="https://github.com/Z-DDV"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/122068983?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@Z-DDV" /></a>
+  <a href="https://github.com/DavidPivert"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/61420909?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@DavidPivert" /></a>
   <a href="https://github.com/0xfelixli"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/81979996?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@0xfelixli" /></a>
   <a href="https://github.com/Sergmay911"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/304439776?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@Sergmay911" /></a>
   <a href="https://github.com/X77seven"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/171017641?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@X77seven" /></a>
   <a href="https://github.com/imgdown"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/348032096?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@imgdown" /></a>
   <a href="https://github.com/mookim-eth"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/97934198?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@mookim-eth" /></a>
   <a href="https://github.com/nzhdotme"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/9588882?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@nzhdotme" /></a>
+  <a href="https://github.com/tankle0"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/63094764?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@tankle0" /></a>
   <a href="https://github.com/Shunamxiao"><img src="https://images.weserv.nl/?url=https://avatars.githubusercontent.com/u/92215296?v=4&h=96&w=96&fit=cover&mask=circle&maxage=7d" width="48" height="48" alt="@Shunamxiao" /></a>
 </p>
 <!-- readme-contributors:end -->

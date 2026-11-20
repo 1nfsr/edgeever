@@ -480,6 +480,7 @@ export const NotebookPane = ({
   onSelect,
   onCreateNotebook,
   onRenameNotebook,
+  onImportMarkdown,
   onEditNotebookAppearance,
   onDeleteNotebook,
   onMoveNotebook,
@@ -515,6 +516,7 @@ export const NotebookPane = ({
   onSelect: (notebookId: string) => void;
   onCreateNotebook: (parentId?: string | null) => void;
   onRenameNotebook: (notebook: Notebook) => void;
+  onImportMarkdown: (notebookId: string) => void;
   onEditNotebookAppearance: (notebook: Notebook) => void;
   onDeleteNotebook: (notebook: Notebook) => void;
   onMoveNotebook: (notebookId: string, targetNotebookId: string, position: NotebookDropPosition) => void;
@@ -800,7 +802,7 @@ export const NotebookPane = ({
             label={t("notebookPane.allMemos")}
             onClick={onBackToList}
           />
-          {demoMode && onResetDemo && (
+          {(demoMode || (import.meta.env.DEV && typeof __EDGEEVER_DEVELOPMENT_PROFILE__ !== "undefined" && __EDGEEVER_DEVELOPMENT_PROFILE__ === "local")) && onResetDemo && (
             <SidebarNavButton
               tone="warning"
               icon={<RotateCcw className={cn("h-4 w-4 text-amber-600", isResettingDemo && "animate-spin")} />}
@@ -876,6 +878,7 @@ export const NotebookPane = ({
                 onSelect={onSelect}
                 onCreateNotebook={onCreateNotebook}
                 onRenameNotebook={onRenameNotebook}
+                onImportMarkdown={onImportMarkdown}
               onEditNotebookAppearance={onEditNotebookAppearance}
                 onDeleteNotebook={onDeleteNotebook}
                 onMoveNotebook={handleMoveNotebook}

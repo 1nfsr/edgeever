@@ -14,17 +14,19 @@ EdgeEver 支持从其他笔记产品直接导入数据。目前提供**原生一
 
 进入 **设置 → 备份与导入 → 从其他应用导入**，点击 **开始导入**。
 
-![从其他应用导入入口](assets/best-practices/original-image/import-from-other-note/import-in-setting.png)
+![从其他应用导入入口](assets/best-practices/original-image/import-from-other-note/import-in-setting-v2.png)
 
 ### 步骤 2：选择来源并载入文件
 
 在弹出的对话框中选择对应来源，直接拖拽或点选文件：
 
-![导入对话框与来源选择](assets/best-practices/original-image/import-from-other-note/import-dialog.png)
+![导入对话框与来源选择](assets/best-practices/original-image/import-from-other-note/import-dialog-v2.png)
 
 - **印象笔记 / Evernote**：
   - 在客户端右键笔记本选择 **导出笔记本...**，导出为 `.enex` 格式（勾选包含标签与时间）。
   - 支持单个/多个 `.enex` 文件、包含多个 ENEX 的文件夹，或打成 `.zip` 压缩包直接拖入。
+  - 超过 160 字符的标题自动缩短，完整原标题保留在正文中，不阻止导入。
+  - 缺失、空或超限附件默认阻止导入。可主动开启 **跳过异常附件继续导入**，重新预检后导入其余内容；被跳过的附件在正文中保留文件名或引用标识，提醒会保留到导入结束。附件统计仅包含待上传的资源，原始导出文件不变。
 - **Obsidian**：
   - 直接拖入本地 Vault 文件夹，或将 Vault 打包为 `.zip` 拖入。
   - 自动保留 Front Matter、标签与 Wiki 双链图片（`![[image.png]]`），自动忽略 `.obsidian` 与 `.git` 等配置目录。
